@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(SceneConst.MainMenuScene);
                 break;
             case ButtonActions.Exit:
-                Debug.Log("Exit Game");
+                Application.Quit();
                 break;
             
             default:

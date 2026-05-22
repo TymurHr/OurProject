@@ -10,12 +10,14 @@ public class PlayerController : MonoBehaviour
         BATYABUS = GameManager.Instance.ACTIONBUS;
         BATYABUS.OnMovePerformed += OnMoveCallback;
         BATYABUS.OnJumpPerformed += OnJumpCallback;
+        BATYABUS.OnLookPerformed += OnLookCallback;
     }
 
     private void OnDisable()
     {
         BATYABUS.OnMovePerformed -= OnMoveCallback;
         BATYABUS.OnJumpPerformed -= OnJumpCallback;
+        BATYABUS.OnLookPerformed -= OnLookCallback;
     }
 
 
@@ -25,6 +27,13 @@ public class PlayerController : MonoBehaviour
 /// if pause not pressed
 /// if player not stuned
         _moveController.GetMoveInput(inputVector);
+    }
+
+    private void OnLookCallback(Vector2 inputVector)
+    {
+/// if pause not pressed
+/// if player not stuned
+        _moveController.GetLookInput(inputVector);
     }
 
     private void OnJumpCallback()

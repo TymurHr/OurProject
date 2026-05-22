@@ -8,6 +8,7 @@ public class EventBus
 
     //input events
     public event Action<Vector2> OnMovePerformed;
+    public event Action<Vector2> OnLookPerformed;
     public event Action OnJumpPerformed;
 
 
@@ -25,5 +26,10 @@ public class EventBus
     public void TriggerJump()
     {
         OnJumpPerformed?.Invoke();
+    }
+
+    public void TriggerLook(Vector2 moveVector)
+    {
+        OnLookPerformed?.Invoke(moveVector);
     }
 }

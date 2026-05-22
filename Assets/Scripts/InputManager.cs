@@ -26,6 +26,17 @@ public class InputManager : MonoBehaviour
         BUS.TriggerMove(input);
     }
 
+
+    public void ReadLookInput(CallbackContext context)
+    {
+        Vector2 input = new Vector2();
+
+
+        input = context.ReadValue<Vector2>();
+
+
+        BUS.TriggerLook(input);
+    }
     public void ReadJumpInput(CallbackContext context)
     {
         if (context.started)

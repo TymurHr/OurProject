@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private int _enemyHP;
+    [SerializeField] private int _enemyHP = 10;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _maxMoveDistance;
     [SerializeField] private float _minMoveDistance;
@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
     {
         _enemyHP -= damage;
 
-        Debug.Log(_enemyHP);
+        Debug.Log(this.name + _enemyHP);
     }
 
 

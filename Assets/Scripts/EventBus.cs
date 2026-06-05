@@ -10,6 +10,7 @@ public class EventBus
     public event Action<Vector2> OnMovePerformed;
     public event Action<Vector2> OnLookPerformed;
     public event Action OnJumpPerformed;
+    public event Action OnAttackPerformed;
 
 
     public void TriggerButton(ButtonActions action)
@@ -26,6 +27,10 @@ public class EventBus
     public void TriggerJump()
     {
         OnJumpPerformed?.Invoke();
+    }
+    public void TriggerAttack()
+    {
+        OnAttackPerformed?.Invoke();
     }
 
     public void TriggerLook(Vector2 moveVector)

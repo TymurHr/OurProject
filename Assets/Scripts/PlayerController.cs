@@ -4,7 +4,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private EventBus BATYABUS;
-    [SerializeField] PlayerMoveController _moveController;
+    [SerializeField] private PlayerMoveController _moveController;
+
+    [SerializeField] private PlayerShooting _shotController;
 
     private CreatureStats _playerStats;
 
@@ -14,7 +16,7 @@ public class PlayerController : MonoBehaviour
         BATYABUS.OnMovePerformed += OnMoveCallback;
         BATYABUS.OnJumpPerformed += OnJumpCallback;
         BATYABUS.OnLookPerformed += OnLookCallback;
-
+        BATYABUS.OnAttackPerformed += OnAttackCallback;
         int coins = _playerStats._creatureCoins;
     }
 
@@ -23,8 +25,7 @@ public class PlayerController : MonoBehaviour
         BATYABUS.OnMovePerformed -= OnMoveCallback;
         BATYABUS.OnJumpPerformed -= OnJumpCallback;
         BATYABUS.OnLookPerformed -= OnLookCallback;
-
-  
+        BATYABUS.OnAttackPerformed -= OnAttackCallback;
     }
 
 
@@ -48,6 +49,13 @@ public class PlayerController : MonoBehaviour
 /// if pause not pressed
 /// if player not stuned
         _moveController.GetJUmpCOMAND();  
+    }
+
+    private void OnAttackCallback()
+    {
+/// if pause not pressed
+/// if player not stuned
+        _shotController.ShotCommand();  
     }
 }
 

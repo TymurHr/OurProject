@@ -29,7 +29,6 @@ public class PlayerMoveController : MonoBehaviour
     public void GetLookInput(Vector2 look)
     {
         float xInput = look.x;
-        Debug.Log(xInput);
         
         if (xInput > _lookThreshhold)
         {

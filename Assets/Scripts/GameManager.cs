@@ -19,8 +19,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         ACTIONBUS =  new EventBus();
-
-        SaveMen.Initialize(ACTIONBUS);
+ 
 
         ACTIONBUS.OnButtonPressed += LoadGameState;
 

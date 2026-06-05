@@ -44,4 +44,13 @@ public class InputManager : MonoBehaviour
             BUS.TriggerJump();
         }
     }
+
+
+    public void ReadAttackInput(CallbackContext context)
+    {
+        if (context.phase == UnityEngine.InputSystem.InputActionPhase.Started)
+        {
+            BUS.TriggerAttack();
+        }
+    }
 }

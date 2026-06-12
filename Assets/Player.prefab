@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4aa2cb55b9c39714f8ad0bf85fc20de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMoveController
-  _PlayerSpeed: 4.66
+  _PlayerSpeed: 10.75
   _jumpForce: 1.2
   _playerRB: {fileID: 6128205938749288922}
   _lookSpeed: 1.06

@@ -18,7 +18,7 @@ public class PlayerShooting : MonoBehaviour
             var enemy = hit.collider.GetComponent<EnemyController>();
             if (enemy != null)
             {
-                enemy.TakeDamage(_damage);
+                enemy.TakeDamage(_damage, hit.point);
             }
             
         }

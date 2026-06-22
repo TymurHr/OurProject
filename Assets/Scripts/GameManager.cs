@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public EventBus ACTIONBUS {get; private set;}
 
     [SerializeField] private SaveManager SaveMen;
+    [SerializeField] private SoundManager SOUNDMAN;
 
     private void Awake()
     {
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         ACTIONBUS =  new EventBus();
+
+        SOUNDMAN.Initialize(ACTIONBUS);
  
 
         ACTIONBUS.OnButtonPressed += LoadGameState;

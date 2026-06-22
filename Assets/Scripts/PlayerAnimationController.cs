@@ -5,6 +5,7 @@ public class PlayerAnimationController : MonoBehaviour
     [SerializeField] private Animator _anim;
 
     private const string _walkParameter = "Speed";
+    private const string _armedParameter = "IsArmed";
 
     private EventBus _bus;
     private float _currentSpeed;
@@ -13,6 +14,7 @@ public class PlayerAnimationController : MonoBehaviour
     {
         _bus = GameManager.Instance.ACTIONBUS;
         _bus.OnMovePerformed += CatchPLayerSpeed;
+        _anim.SetBool(_armedParameter, true);
     }
 
     private void OnDisable()

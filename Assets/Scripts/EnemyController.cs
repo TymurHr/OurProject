@@ -19,6 +19,8 @@ public class EnemyController : MonoBehaviour
 
     private float _nextRotation = 0f;
 
+    [SerializeField] private CreatureInventory _inventory;
+
     private void OnEnable()
     {
         CalculateNextPoint();

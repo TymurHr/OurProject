@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private SaveManager SaveMen;
     [SerializeField] private SoundManager SOUNDMAN;
+
+
+    [SerializeField] private WEaponCatalog _catalog;
+    public WEaponCatalog GetWEaponCatalog => _catalog;
 
     private void Awake()
     {

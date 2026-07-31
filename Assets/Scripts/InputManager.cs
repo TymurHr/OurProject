@@ -31,9 +31,7 @@ public class InputManager : MonoBehaviour
     {
         Vector2 input = new Vector2();
 
-
         input = context.ReadValue<Vector2>();
-
 
         BUS.TriggerLook(input);
     }
@@ -45,12 +43,33 @@ public class InputManager : MonoBehaviour
         }
     }
 
-
     public void ReadAttackInput(CallbackContext context)
     {
         if (context.phase == UnityEngine.InputSystem.InputActionPhase.Started)
         {
-            BUS.TriggerAttack();
+            BUS.TriggerAttack(true);
         }
+        else if (context.phase == UnityEngine.InputSystem.InputActionPhase.Canceled)
+        {
+            BUS.TriggerAttack(false);
+        }
+    }
+
+
+    public void ReadShiftInput(CallbackContext context)
+    {
+        if (context.phase == UnityEngine.InputSystem.InputActionPhase.Started)
+        {
+            BUS.TriggerShift(true);
+        }
+        else if (context.phase == UnityEngine.InputSystem.InputActionPhase.Canceled)
+        {
+            BUS.TriggerShift(false);
+        }
+    }
+
+    public void ReadSwapInput(CallbackContext context)
+    {
+        
     }
 }

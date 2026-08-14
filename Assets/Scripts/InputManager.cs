@@ -10,20 +10,14 @@ public class InputManager : MonoBehaviour
         BUS = GameManager.Instance.ACTIONBUS;
     }
 
-    public void ReadMoveInput(CallbackContext context)
+    public void ReadScrolInput(CallbackContext context)
     {
         Vector2 input = new Vector2();
 
-        if (context.performed)
-        {
-            input = context.ReadValue<Vector2>();
-        }
-        // if (context.canceled)
-        // {
-        //     input = new Vector2(0,0);
-        // }
+        input = context.ReadValue<Vector2>();
 
-        BUS.TriggerMove(input);
+
+        BUS.TrigerRoll(input.y);
     }
 
 

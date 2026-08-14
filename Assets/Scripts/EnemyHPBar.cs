@@ -22,6 +22,6 @@ public class EnemyHPBar : MonoBehaviour
 
     private void LateUpdate()
     {
-        _canvas.rotation = _mainCamera.transform.rotation;
+        _canvas.forward =  _mainCamera.transform.forward;
     }
 }

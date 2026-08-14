@@ -379,6 +379,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9d0fb282-6b08-42c3-aa44-b2cc8ee149dc
     m_ActionName: Player/swap action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 169628399}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: ReadScrolInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e8fb1c0d-8b18-42cb-997a-8e1ca3987c0f
+    m_ActionName: 'Player/OnMauseSkrol[/Mouse/scroll/up,/Mouse/scroll/down]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player

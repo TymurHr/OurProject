@@ -1,5 +1,6 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -21,16 +22,76 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private CreatureInventory _inventory;
 
+    private EnemySteite _currenSteite = EnemySteite.Idle;
+    [SerializeField] private float _LookSpeed = 5f;
+    [SerializeField] private float _searchTime = 1f;
+    private float _nextScan = 0f;
+    private float _searchRadius = 10f;
+    [SerializeField] private LayerMask _playerLayer;
+    private PlayerController _TargetPlayer;
+    [SerializeField] private NavMeshAgent _Agent;
+
+
+    [SerializeField] private int Damage = 5;
+    [SerializeField] private float SchotKD = 3f;
+    private float CarentKD = 0f;
+    [SerializeField] private WEaponCatalog _weaponCatalog;
+    [SerializeField] private Transform WeaponPoint;
+
     private void OnEnable()
     {
         CalculateNextPoint();
         _enemyHP = _maxEnemyHp;
         UpdateDisplay();
     }
+    private void CreitWeapon()
+    {
+        var Weapon = _weaponCatalog.GetWEapon(_inventory.wEapons[0]);
+
+    }
 
     private void FixedUpdate()
     {
-        Move();
+        _nextScan += Time.deltaTime;
+        if (_nextScan >= _searchTime)
+        {
+            ScanForPlayer();
+            _nextScan = 0;
+        }
+        switch (_currenSteite)
+        {
+            case EnemySteite.Idle:
+                //логика потрулюваня
+                GoToRandomPoint();
+                break;
+
+            case EnemySteite.Chang:
+                ChangPlayer();
+                break;
+
+            case EnemySteite.Attack:
+
+                break;
+        }
+    }
+    private void ChangPlayer()
+    {
+        _Agent.SetDestination(_TargetPlayer.transform.position);
+    }
+    private void ScanForPlayer()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, -_searchRadius, _playerLayer);
+        if (colliders.Length > 0)
+        {
+            _TargetPlayer = colliders[0].GetComponent<PlayerController>();
+            _currenSteite = EnemySteite.Chang;
+        }
+
+        else
+        {
+            _TargetPlayer = null;
+            _currenSteite = EnemySteite.Idle;
+        }
     }
 
     private void UpdateDisplay()
@@ -38,7 +99,7 @@ public class EnemyController : MonoBehaviour
         _hpBarController.UpdateHpbar(_maxEnemyHp, _enemyHP);
     }
 
-    private void Move()
+    private void GoToRandomPoint()
     {
         transform.Translate(Vector3.forward * (_moveSpeed * _moveDirection * Time.fixedDeltaTime ));
         float distance = Vector3.Distance(_startPosition, transform.position);
@@ -84,5 +145,15 @@ public class EnemyController : MonoBehaviour
         _lastHit++;
     }
 
+
+}
+
+public enum EnemySteite
+{
+    Idle = 0,
+
+    Chang = 1,
+
+    Attack = 2
 
 }

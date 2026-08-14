@@ -21,6 +21,6 @@ public enum WEaponType
 {
     AK47 = 0,
     DRABASH  = 1,
-    GLOCHARA = 2,
+    UZI = 2,
     RPG = 3,
 }

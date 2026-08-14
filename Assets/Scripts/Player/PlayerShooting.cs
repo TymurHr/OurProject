@@ -11,6 +11,9 @@ public class PlayerShooting : MonoBehaviour
 
     [SerializeField] private WEaponType _requestWEapon;
 
+    private InwentaryControler _controler;
+
+
     private int _damage;
     private float _defaultShootCD;
 
@@ -18,15 +21,21 @@ public class PlayerShooting : MonoBehaviour
     private float _currentShootCD = 0;
     private bool _isShootingAllowed = false;
 
+    public void Init(InwentaryControler controler)
+    {
+
+        _controler = controler;
+        GetWeaponInHand();
+    }
+
     public void ShotCommand(bool t)
     {
         _isShootingAllowed = t;
     }
 
-    public void GetWeaponInHand(WEaponCatalog ctga)
+    public void GetWeaponInHand()
     {
-        var wpn = ctga.GetWEapon(_requestWEapon);
-        Instantiate(wpn.Model, _weaponRoot.position, Quaternion.identity, _weaponRoot);
+        var wpn = _controler.getWeaponSO();
         _damage = wpn.Damage;
         _defaultShootCD = wpn.Cooldown;
     }
@@ -38,7 +47,6 @@ public class PlayerShooting : MonoBehaviour
         if (_isShootingAllowed  && _currentShootCD >= _defaultShootCD)
         {
             ShotRay();
-            // Debug.Log("SHOOOOOOOOOOOOOOOOOOOOOT");
             
             _currentShootCD = 0;
         }

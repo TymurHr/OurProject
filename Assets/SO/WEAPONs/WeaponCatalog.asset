@@ -15,3 +15,5 @@ MonoBehaviour:
   _weapons:
   - {fileID: 11400000, guid: 1029ae8a024a28043820da3ace214fe0, type: 2}
   - {fileID: 11400000, guid: 1aa9213d2baff1f4eb234c8ee4184be6, type: 2}
+  - {fileID: 11400000, guid: 3af45d4287d2bca478e7de7805cd2692, type: 2}
+  - {fileID: 11400000, guid: 2d21e913c2c521c4b94e675b7fda856c, type: 2}

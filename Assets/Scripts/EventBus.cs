@@ -12,7 +12,12 @@ public class EventBus
     public event Action OnJumpPerformed;
     public event Action<bool> OnAttackPerformed;
     public event Action<bool> OnShiftPerformed;
+    public event Action<float> OnRollPerformed;
 
+    public void TrigerRoll(float num)
+    {
+        OnRollPerformed?.Invoke(num);
+    }
 
     public void TriggerButton(ButtonActions action)
     {

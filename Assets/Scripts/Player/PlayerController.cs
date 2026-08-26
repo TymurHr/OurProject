@@ -19,7 +19,14 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private int _PlayerHP = 100;
     private bool isDed = false;
-    public bool IsDed => isDed; 
+    public bool IsDed => isDed;
+
+    [SerializeField] private float minRotationX = -30f;
+    [SerializeField] private float maxRotationX = 30f;
+    private float _currentRotationX = 0f;
+    private float _currentRotationY = 0f;
+    [SerializeField] private float _cameraRetornSpeedY = 3f;
+    private float _currentCameraSpeedY =0f;
     private void OnEnable( )
     {
         BATYABUS = GameManager.Instance.ACTIONBUS;
@@ -73,9 +80,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnLookCallback(Vector2 inputVector)
     {
+        if (isDed)
+        {
+            return;
+        }
         /// if pause not pressed
         /// if player not stuned
-
+        _currentCameraSpeedY = _cameraRptaitenSpeed * inputVector.x;
         _currentCameraRotateSpeed = _cameraRptaitenSpeed * inputVector.y;
         _moveController.GetLookInput(inputVector);
     }
@@ -85,7 +96,12 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        CameraPivot.Rotate(Vector3.right, _currentCameraRotateSpeed * Time.deltaTime);
+        _currentRotationX += _currentCameraRotateSpeed * Time.deltaTime;
+        _currentRotationX= Mathf.Clamp(CameraPivot.rotation.x, minRotationX,maxRotationX);
+        // CameraPivot.Rotate(Vector3.right, _currentCameraRotateSpeed * Time.deltaTime);
+        _currentRotationY += _currentCameraSpeedY * Time.deltaTime;
+        _currentRotationY = Mathf.Lerp(_currentRotationY, 0f , _cameraRetornSpeedY * Time.deltaTime);
+       CameraPivot.localRotation = Quaternion.Euler(-_currentRotationX,_currentRotationY,0f);
     }
      
     private void OnJumpCallback()

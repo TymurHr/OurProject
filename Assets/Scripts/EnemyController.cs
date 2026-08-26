@@ -37,6 +37,7 @@ public class EnemyController : MonoBehaviour
     private float CarentKD = 0f;
     [SerializeField] private WEaponCatalog _weaponCatalog;
     [SerializeField] private Transform WeaponPoint;
+    [SerializeField] private Animator _animator;
 
     private void OnEnable()
     {
@@ -61,16 +62,18 @@ public class EnemyController : MonoBehaviour
         switch (_currenSteite)
         {
             case EnemySteite.Idle:
+                SetAnimaischenBlent(0f);
                 //логика потрулюваня
                 GoToRandomPoint();
                 break;
 
             case EnemySteite.Chang:
+                SetAnimaischenBlent(1f);
                 ChangPlayer();
                 break;
 
             case EnemySteite.Attack:
-
+                SetAnimaischenBlent(0f);
                 break;
         }
     }
@@ -101,10 +104,9 @@ public class EnemyController : MonoBehaviour
 
     private void GoToRandomPoint()
     {
-        transform.Translate(Vector3.forward * (_moveSpeed * _moveDirection * Time.fixedDeltaTime ));
-        float distance = Vector3.Distance(_startPosition, transform.position);
+        _Agent.SetDestination(_startPosition + transform.forward * _currentMoveDistance * _moveDirection);
 
-        if(distance >= _currentMoveDistance)
+        if (_nextScan >= _searchTime)
         {
             _moveDirection *= -1;
             CalculateNextPoint();
@@ -116,7 +118,7 @@ public class EnemyController : MonoBehaviour
     {
         _startPosition = transform.position;
         _currentMoveDistance = Random.Range(_minMoveDistance, _maxMoveDistance);
-        _nextRotation = Random.Range(-180f, 180f);
+        _nextRotation = Random.Range(-50f, 50f);
     }
 
     public void TakeDamage(int damage, Vector3 position)
@@ -144,7 +146,10 @@ public class EnemyController : MonoBehaviour
         _hitParticles[_lastHit].Play();
         _lastHit++;
     }
-
+    private void SetAnimaischenBlent(float blendValy)
+    {
+        _animator.SetFloat("Speed", blendValy);
+    }
 
 }
 

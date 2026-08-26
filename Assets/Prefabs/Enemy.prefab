@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 1030846047195380164}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.064, y: -0.18, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.064, y: -1.6908, z: 0.69211}
+  m_LocalScale: {x: 2.37, y: 2.37, z: 2.37}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 387933813496970727}
@@ -88,12 +88,13 @@ MonoBehaviour:
   _searchTime: 1
   _playerLayer:
     serializedVersion: 2
-    m_Bits: 0
-  _Agent: {fileID: 0}
+    m_Bits: 64
+  _Agent: {fileID: 6459540168030507879}
   Damage: 5
   SchotKD: 3
   _weaponCatalog: {fileID: 11400000, guid: 737f6e04071139043bdd6da96f1fc128, type: 2}
   WeaponPoint: {fileID: 8602044819428948997}
+  _animator: {fileID: 6017402202667394973}
 --- !u!114 &9008540037041863536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1531,6 +1532,11 @@ PrefabInstance:
 --- !u!4 &387933813496970727 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8189179709687727534, guid: 4c67ed6c086451b4db54ac4d24b626bb, type: 3}
+  m_PrefabInstance: {fileID: 8414967321056999497}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6017402202667394973 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2829917917779058644, guid: 4c67ed6c086451b4db54ac4d24b626bb, type: 3}
   m_PrefabInstance: {fileID: 8414967321056999497}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &7797349244986892742 stripped

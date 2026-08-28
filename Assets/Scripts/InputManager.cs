@@ -36,7 +36,14 @@ public class InputManager : MonoBehaviour
             BUS.TriggerJump();
         }
     }
+    public void ReadMoveInput(CallbackContext context)
+    {
+        Vector2 input = new Vector2();
 
+        input = context.ReadValue<Vector2>();
+
+        BUS.TriggerMove(input);
+    }
     public void ReadAttackInput(CallbackContext context)
     {
         if (context.phase == UnityEngine.InputSystem.InputActionPhase.Started)
